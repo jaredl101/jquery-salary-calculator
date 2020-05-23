@@ -38,7 +38,7 @@ if ( !isNaN($('#firstNameInput').val()) || !isNaN($('#lastNameInput').val()) ||
     $('#idInput').val('');
     $('#titleInput').val('');
     $('#annualSalaryInput').val('');
-
+    addToTable();
     return true;
 } // end getUserInfo
 
@@ -70,10 +70,11 @@ function addToTable() {
         // employee.title
         // employee.annualSalary
         rowElement.append(`<td>${employee.firstName}</td>`);
+        console.log(`employee first name is ${employee.firstName}`);
         rowElement.append(`<td>${employee.lastName}</td>`);
         rowElement.append(`<td>${employee.id}</td>`);
         rowElement.append(`<td>${employee.title}</td>`);
-        rowElement.append(`<td>${employee.salary}</td>`);
+        rowElement.append(`<td>${employee.annualSalary}</td>`);
         $('table tbody').append(rowElement);
 
     }
