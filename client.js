@@ -8,6 +8,11 @@ $('#submitButton').on('click', getUserInfo);
 
 
 function getUserInfo(){
+    // Gets all the user input that they filled in
+    // Checks to make sure inputs aren't empty
+    // Checks to make sure inputs make sense:
+        // First Name, Last Name, and Title must be strings.
+        // ID and Annual Salary must be numbers.
 if($('#firstNameInput').val().length === 0 || $('#lastNameInput').val().length === 0 ||
    $('#idInput').val().length === 0 || $('#titleInput').val().length === 0 || 
    $('#annualSalaryInput').val().length === 0) {
@@ -27,9 +32,18 @@ if ( !isNaN($('#firstNameInput').val()) || !isNaN($('#lastNameInput').val()) ||
     }
    newEmployee( $('#firstNameInput').val(), $('#lastNameInput').val(), $('#idInput').val(),
                 $('#titleInput').val(), $('#annualSalaryInput').val() );
-} // end setup
+    $('#firstNameInput').val('');
+    $('#lastNameInput').val('');
+    $('#idInput').val('');
+    $('#titleInput').val('');
+    $('#annualSalaryInput').val('');
+
+    return true;
+} // end getUserInfo
 
 function newEmployee(myFirstName, myLastName, myID, myTitle, myAnnualSalary) {
+    // puts the user info captured from inputs into an employee object
+    // pushes this employee object to our list of employees
     const newEmployee = {
         firstName:    myFirstName,
         lastName:     myLastName,
@@ -39,6 +53,10 @@ function newEmployee(myFirstName, myLastName, myID, myTitle, myAnnualSalary) {
     }
     employeeList.push(newEmployee)
     return true;
+}
+
+function addToTable() {
+
 }
 
 
