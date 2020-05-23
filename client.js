@@ -2,6 +2,7 @@ let employeeList = []
 
 function setup() {
 $('#submitButton').on('click', getUserInfo);
+
 }
 
 
@@ -55,7 +56,27 @@ function newEmployee(myFirstName, myLastName, myID, myTitle, myAnnualSalary) {
     return true;
 }
 
+function clearTable(){
+    $("table tbody").empty();
+}
+
 function addToTable() {
+    clearTable();
+    for(let employee of employeeList){
+        let rowElement = $("<tr></tr>");
+        // employee.firstName
+        // employee.lastName
+        // employee.id
+        // employee.title
+        // employee.annualSalary
+        rowElement.append(`<td>${employee.firstName}</td>`);
+        rowElement.append(`<td>${employee.lastName}</td>`);
+        rowElement.append(`<td>${employee.id}</td>`);
+        rowElement.append(`<td>${employee.title}</td>`);
+        rowElement.append(`<td>${employee.salary}</td>`);
+        $('table tbody').append(rowElement);
+
+    }
 
 }
 
