@@ -1,12 +1,22 @@
-let employeeList = []
+let employeeList = [];
 
 function setup() {
-$('#submitButton').on('click', getUserInfo);
+    $('#submitButton').on('click', getUserInfo);
+    $('table').on('click', '.deleteButton', deleteEmp);
 
 }
 
-
-
+function deleteEmp(){
+    const myElement = event.target;
+    const toRemove = $(event.target).closest('tbody tr').index();
+    $(myElement).parent().parent().fadeOut(100).remove();
+    employeeList.splice(toRemove, 1)
+    
+    
+    
+    
+    
+}
 
 function getUserInfo(){
     // Gets all the user input that they filled in
@@ -75,6 +85,9 @@ function addToTable() {
         rowElement.append(`<td>${employee.id}</td>`);
         rowElement.append(`<td>${employee.title}</td>`);
         rowElement.append(`<td>${employee.annualSalary}</td>`);
+        rowElement.append(`<td><button class = "deleteButton">Delete</button></td>`);
+
+
         $('table tbody').append(rowElement);
 
     }
