@@ -1,5 +1,4 @@
 let employeeList = [];
-let monthlyLimit = 20000;
 
 function setup() {
     $('#submitButton').on('click', getUserInfo);
@@ -93,6 +92,7 @@ function addToTable() {
 }
 
 function calcEmpCosts(){
+    // calculates monthly total required to pay employees
     let total = 0;
     for(let i = 0; i < employeeList.length; i++){
         total += Number(employeeList[i].annualSalary)
@@ -102,6 +102,10 @@ function calcEmpCosts(){
     let monthly = $('#totalMonthly');
     monthly.empty();
     monthly.append(total);
+
+    if(total > 20000){
+        $('.bottom').css('background-color', 'red');
+    }
 
     return true;
 
