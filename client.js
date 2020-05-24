@@ -1,4 +1,5 @@
 let employeeList = [];
+let monthlyLimit = 20000;
 
 function setup() {
     $('#submitButton').on('click', getUserInfo);
@@ -7,15 +8,12 @@ function setup() {
 }
 
 function deleteEmp(){
+    // function deletes an employee row in which the delete button was pressed.
     const myElement = event.target;
     const toRemove = $(event.target).closest('tbody tr').index();
-    $(myElement).parent().parent().fadeOut(100).remove();
+    $(myElement).parent().parent().fadeOut(1000);
+    $(this).remove();
     employeeList.splice(toRemove, 1)
-    
-    
-    
-    
-    
 }
 
 function getUserInfo(){
@@ -49,6 +47,7 @@ if ( !isNaN($('#firstNameInput').val()) || !isNaN($('#lastNameInput').val()) ||
     $('#titleInput').val('');
     $('#annualSalaryInput').val('');
     addToTable();
+    calcEmpCosts();
     return true;
 } // end getUserInfo
 
@@ -80,7 +79,6 @@ function addToTable() {
         // employee.title
         // employee.annualSalary
         rowElement.append(`<td>${employee.firstName}</td>`);
-        console.log(`employee first name is ${employee.firstName}`);
         rowElement.append(`<td>${employee.lastName}</td>`);
         rowElement.append(`<td>${employee.id}</td>`);
         rowElement.append(`<td>${employee.title}</td>`);
@@ -94,5 +92,19 @@ function addToTable() {
 
 }
 
+function calcEmpCosts(){
+    let total = 0;
+    for(let i = 0; i < employeeList.length; i++){
+        total += Number(employeeList[i].annualSalary)
+    }
+    total = (total / 12);
+
+    let monthly = $('#totalMonthly');
+    monthly.empty();
+    monthly.append(total);
+
+    return true;
+
+}
 
 $(document).ready(setup);

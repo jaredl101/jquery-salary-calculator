@@ -49,3 +49,10 @@ th:last-child td {
 .inputs {
     margin-left: 5px;
 }
+
+.bottom {
+    bottom: 0;
+    float: right;
+    position: relative;
+
+}
