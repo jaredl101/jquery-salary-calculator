@@ -3,6 +3,7 @@ let employeeList = [];
 function setup() {
     $('#submitButton').on('click', getUserInfo);
     $('table').on('click', '.deleteButton', deleteEmp);
+    clearTable();
 
 }
 
@@ -98,7 +99,7 @@ function calcEmpCosts(){
         total += Number(employeeList[i].annualSalary)
     }
     total = (total / 12);
-
+    total = total.toFixed(2);
     let monthly = $('#totalMonthly');
     monthly.empty();
     monthly.append(total);
